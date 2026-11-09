@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hoe goed ken jij mij? v3.5</title><style>body{margin:0;background:#fff3f6;font:16px system-ui;color:#33212a}main{max-width:540px;margin:auto;padding:18px}header{background:linear-gradient(125deg,#bd235f,#f47378);color:white;text-align:center;padding:24px;border-radius:20px}h1{margin:0;font-size:26px}.card{background:white;border:1px solid #f1d7e0;border-radius:17px;padding:18px;margin:14px 0;box-shadow:0 2px 9px #7e26440c}label{display:block;margin:12px 0 5px;font-weight:600}input,select{box-sizing:border-box;width:100%;padding:12px;font-size:16px;border:1px solid #dbb7c4;border-radius:10px}button{font:inherit;border:0;border-radius:10px;padding:13px;cursor:pointer}button.primary{background:#cf3068;color:white;width:100%;font-weight:700;margin-top:10px}button.secondary{background:#fce5ed;color:#862849;margin:4px}button.option{width:100%;text-align:left;background:#fff8fa;border:1px solid #eed4dd;margin:5px 0;color:#55545a;font-weight:700;-webkit-text-fill-color:#55545a}button.selected{background:#f9cadb;border:2px solid #ca2d68;color:#424047;-webkit-text-fill-color:#424047}.muted{color:#795d6b;font-size:14px}.scores{display:flex;justify-content:space-around;text-align:center}.scores strong{display:block;font-size:26px;color:#ca2d68}.pill{display:inline-block;border-radius:30px;background:#fce5ed;padding:6px 12px;font-size:13px}details{margin:10px 0;border-top:1px solid #eee;padding-top:10px}small{color:#795d6b}#app{min-height:250px} .actions{display:flex;flex-wrap:wrap;gap:6px}.actions button{flex:1}
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hoe goed ken jij mij? v3.6</title><style>body{margin:0;background:#fff3f6;font:16px system-ui;color:#33212a}main{max-width:540px;margin:auto;padding:18px}header{background:linear-gradient(125deg,#bd235f,#f47378);color:white;text-align:center;padding:24px;border-radius:20px}h1{margin:0;font-size:26px}.card{background:white;border:1px solid #f1d7e0;border-radius:17px;padding:18px;margin:14px 0;box-shadow:0 2px 9px #7e26440c}label{display:block;margin:12px 0 5px;font-weight:600}input,select{box-sizing:border-box;width:100%;padding:12px;font-size:16px;border:1px solid #dbb7c4;border-radius:10px}button{font:inherit;border:0;border-radius:10px;padding:13px;cursor:pointer}button.primary{background:#cf3068;color:white;width:100%;font-weight:700;margin-top:10px}button.secondary{background:#fce5ed;color:#862849;margin:4px}button.option{width:100%;text-align:left;background:#fff8fa;border:1px solid #eed4dd;margin:5px 0;color:#55545a;font-weight:700;-webkit-text-fill-color:#55545a}button.selected{background:#f9cadb;border:2px solid #ca2d68;color:#424047;-webkit-text-fill-color:#424047}.muted{color:#795d6b;font-size:14px}.scores{display:flex;justify-content:space-around;text-align:center}.scores strong{display:block;font-size:26px;color:#ca2d68}.pill{display:inline-block;border-radius:30px;background:#fce5ed;padding:6px 12px;font-size:13px}details{margin:10px 0;border-top:1px solid #eee;padding-top:10px}small{color:#795d6b}#app{min-height:250px} .actions{display:flex;flex-wrap:wrap;gap:6px}.actions button{flex:1}
 button:disabled{opacity:.45} .notice{background:#fff1d6;padding:10px;border-radius:10px} .status{font-size:13px;text-align:center;margin:10px 0;color:#795d6b} .toolbar{display:flex;gap:8px;flex-wrap:wrap}.toolbar button{flex:1} .danger{color:#a3203d!important} input[type=checkbox]{width:auto} summary{cursor:pointer;padding:8px 0}
 /* v3.3: compacte spelweergave voor iPhone 14, overige schermen blijven ruim */
 body.playing main{padding:8px 12px 12px;max-width:540px}
@@ -28,6 +28,18 @@ html body #app button.option.selected, html body.playing #app button.option.sele
   color:#3e3e43 !important; -webkit-text-fill-color:#3e3e43 !important;
   background:#f9cadb !important; border:2px solid #ca2d68 !important;
 }
+
+/* v3.6: subtiele voortgang, categorieen en statistieken */
+.progress-track{height:5px;background:#f5dce6;border-radius:10px;overflow:hidden;margin:5px 0 0}
+.progress-fill{height:100%;background:#d04479;border-radius:10px;transition:width .2s}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 8px;margin:7px 0}
+.cat-grid label{margin:0;padding:7px 5px;font-size:13px;font-weight:550;display:flex;align-items:flex-start;gap:6px}
+.cat-grid input{margin:2px 0 0;flex:none}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}
+.stat-box{background:#fff3f7;border-radius:12px;padding:12px;text-align:center}
+.stat-box b{display:block;color:#bf2862;font-size:25px}.stat-box small{font-size:12px}
+.stat-row{margin:12px 0}.stat-track{height:9px;background:#f3dce5;border-radius:9px;overflow:hidden}.stat-fill{height:100%;background:#cc3570;border-radius:9px}
+body.playing .progress-track{margin-top:4px}
 </style></head><body><main><header><div style="font-size:32px">💕</div><h1>Hoe goed ken jij mij?</h1><div>Het relatievragenspel voor twee</div></header><div id="app"></div></main><script>
 const topics=[
 ['Romantiek',['Wat maakt een avond samen voor mij extra bijzonder?','Welk klein gebaar geeft mij het meest een geliefd gevoel?','Wat zou ik het liefst doen op een onverwachte date?','Hoe laat ik het duidelijkst merken dat ik van iemand houd?','Wat zou ik kiezen voor een romantisch weekend?','Welke verrassing zou mij het meest raken?','Waar geniet ik het meest van als we samen zijn?','Wat zou ik graag vaker samen beleven?'],['Samen koken','Een spontaan uitje','Knuffelen en praten','Een persoonlijke verrassing']],
@@ -43,13 +55,127 @@ const topics=[
 
 const extraSubjects=["een onverwacht compliment", "een regenachtige zondag", "een drukke werkweek", "een spontaan weekend weg", "een lange autorit", "een verjaardag", "een misverstand tussen ons", "een etentje met vrienden", "een dag zonder telefoon", "een vakantie aan zee", "een wandeling in de natuur", "een nieuwe gezamenlijke hobby", "een avond waarop ik moe ben", "een bijzonder cadeau", "een grappige blunder", "een familiefeest", "een vrije vrijdag", "een nieuwe stad ontdekken", "een romantisch diner", "een moeilijke keuze", "een succes op mijn werk", "een huiselijke avond", "een avontuur buiten mijn comfortzone", "een nostalgisch liedje", "een verrassing van jou", "een rustige ochtend samen", "een plan dat plotseling verandert", "een belangrijke mijlpaal"];
 const extraFrames=[["Romantiek", "Wat zou ik het liefst willen bij {x}?"], ["Humor", "Wat zou ik het grappigst vinden aan {x}?"], ["Dagelijks leven", "Hoe zou ik omgaan met {x}?"], ["Toekomst", "Wat zou ik in de toekomst willen veranderen aan {x}?"], ["Karakter", "Welke kant van mijn karakter zie je vooral bij {x}?"], ["Samen", "Wat zou ik het liefst samen met jou doen rond {x}?"], ["Herinneringen", "Wat zou ik later vooral willen onthouden van {x}?"], ["Voorkeuren", "Welke keuze zou ik maken als het gaat om {x}?"]];
-const extra=extraFrames.flatMap(([cat,template],i)=>extraSubjects.map((subject,j)=>({id:`v3-${i}-${j}`,category:cat,q:template.replace('{x}',subject),options:topics[i][2]})));
-const bank=[...topics.flatMap((t,i)=>t[1].map((q,j)=>({id:`v1-${i}-${j}`,category:t[0],q,options:t[2]}))),...extra];
+
+// Elke vraag krijgt eigen, contextueel passende antwoorden; oude vraag-ID's blijven intact.
+const specificBase=[
+[
+['Samen rustig eten bij kaarslicht','Een onverwacht uitstapje met z’n tweeën','Een avond lang praten en knuffelen','Samen iets bijzonders beleven'],
+['Een oprecht compliment','Een spontane knuffel','Een lief berichtje zonder aanleiding','Dat iemand iets voor mij regelt'],
+['Een verrassingsdiner','Samen een onbekende stad verkennen','Een wandeling op een mooie plek','Een gezellige avond thuis'],
+['Door tijd en aandacht te geven','Door lieve woorden te zeggen','Door aanraking en knuffels','Door praktische dingen voor de ander te doen'],
+['Een knus huisje in de natuur','Een luxe hotel met wellness','Een romantische stedentrip','Een weekend aan zee'],
+['Een handgeschreven liefdesbrief','Een zorgvuldig gepland verrassingsuitje','Een onverwacht klein cadeautje','Een persoonlijk gebaar op het juiste moment'],
+['Samen lachen om kleine dingen','Diepe gesprekken zonder afleiding','Lichamelijke nabijheid','Samen nieuwe ervaringen opdoen'],
+['Meer spontane afspraakjes','Vaker een weekend samen weg','Meer tijd om rustig te praten','Samen een nieuwe hobby proberen']
+],
+[
+['Een droge opmerking op precies het juiste moment','Een onverwachte blunder','Een grappige imitatie','Een absurd filmpje'],
+['Er meteen een grap van maken','Eerst flink balen en daarna lachen','Een nieuw plan verzinnen','De schuld speels bij de ander leggen'],
+['Een gekke outfit aantrekken','Een vreemde dans uitvoeren','Een hilarische video opnemen','Een onbekende aanspreken met een grap'],
+['Woordgrappen','Flauwe moppen','Droge sarcasme','Onhandige situaties'],
+['Een grappige video met fans maken','Mezelf belachelijk maken op televisie','Een komische speech geven','Meedoen aan een gek spelprogramma'],
+['De grappenmaker','De stille observator met scherpe opmerkingen','Degene die overal om lacht','Degene die de grap nog groter maakt'],
+['Hardop lachen','Met mijn ogen rollen','Een nog slechtere grap terugmaken','Net doen alsof ik hem niet begrijp'],
+['Een hilarische reisblunder','Een grappig gesprek met een local','Een onverwachte activiteit','Een mislukte foto of selfie']
+],
+[
+['Uitslapen en rustig ontbijten','Vroeg naar buiten om iets te doen','Sporten voordat de dag begint','Samen uitgebreid ontbijten'],
+['Alleen even rust hebben','Een wandeling of sportactiviteit','Samen praten over de dag','Op de bank een serie kijken'],
+['Een boek lezen of muziek luisteren','Iets in huis aanpakken','Een vriend of familielid bezoeken','Spontaan ergens naartoe gaan'],
+['Rustig ontbijten zonder haast','Meteen actief op pad','Uitslapen tot laat','Samen boodschappen en plannen maken'],
+['Een hele dag niets hoeven','De hele dag iets ondernemen','Een leuke dag met mijn partner','Een spontaan uitstapje alleen'],
+['Een serie of film kijken','Lezen of muziek luisteren','Koken of iets creatiefs doen','Gewoon ontspannen zonder plannen'],
+['De tijd gebruiken om uit te rusten','Iemand spontaan opzoeken','Een klusje afmaken','Iets leuks buiten de deur doen'],
+['Dat ik veel heb kunnen doen','Dat ik tijd had voor mijn geliefden','Dat ik echt heb kunnen ontspannen','Dat er iets onverwacht leuks gebeurde']
+],
+[
+['Samen een nieuwe sport proberen','Een bijzondere reis maken','Een cursus of workshop volgen','Een gezamenlijk project starten'],
+['Een eigen plek of huis creëren','Samen de wereld ontdekken','Een nieuwe vaardigheid leren','Meer tijd voor elkaar maken'],
+['Met de auto op rondreis gaan','Een maand op één bijzondere plek wonen','Veel kleine uitstapjes maken','Thuis aan een droomproject werken'],
+['Meer spontane tijd samen','Een vaste avond voor ons tweeën','Meer reizen en activiteiten','Meer rust in onze agenda'],
+['In een verre, onbekende bestemming','Op een bijzondere plek dicht bij huis','Tijdens gezamenlijke avonturen','In ons eigen dagelijkse leven'],
+['Een droomreis maken','Een mooi huis of vakantieplek kopen','Een lang gekoesterde hobby oppakken','Een jaar minder werken en meer beleven'],
+['Een verre ontdekkingsreis','Een uitdagende sportieve activiteit','Een nieuw leven in een andere stad','Een spontaan avontuur zonder plan'],
+['Een nieuwe taal','Een dans of sport','Samen koken op hoger niveau','Een creatief ambacht']
+],
+[
+['Ik probeer meteen een oplossing te vinden','Ik heb eerst tijd nodig om te schakelen','Ik maak er met humor iets van','Ik vraag anderen om advies'],
+['Wat voor mij goed voelt','Feiten en zekerheid','Wat het beste is voor de mensen om mij heen','Nieuwe mogelijkheden en vrijheid'],
+['Ik bespreek het meteen','Ik neem eerst afstand om na te denken','Ik probeer de sfeer luchtig te houden','Ik zoek direct een compromis'],
+['Geruststelling en begrip','Even met rust gelaten worden','Een praktische oplossing','Een knuffel of nabijheid'],
+['Eerlijkheid','Betrouwbaarheid','Humor','Empathie'],
+['Heel enthousiast en uitbundig','Blij maar eerst wat verlegen','Voorzichtig en vol vragen','Met een grap of plagerij'],
+['Ik bereid me grondig voor','Ik doe het gewoon ondanks de spanning','Ik vraag iemand om steun','Ik stel het zo lang mogelijk uit'],
+['Mijn doorzettingsvermogen','Mijn zorg voor anderen','Mijn gevoel voor humor','Wat ik zelfstandig bereikt heb']
+],
+[
+['Een actieve dag samen buiten','Een rustige dag thuis','Een dagje naar een stad','Samen lekker uit eten'],
+['Elke week een vaste dateavond','Samen een sport of hobby doen','Elke maand een nieuw uitstapje','Vaker samen koken'],
+['Dat we samen kunnen lachen','Dat we elkaar echt begrijpen','Dat we samen avonturen beleven','Dat we helemaal onszelf kunnen zijn'],
+['Met een bijzonder diner','Met een weekendje weg','Met vrienden of familie erbij','Met een intiem moment samen'],
+['Een onbekende stad','Een natuurgebied','Een nieuwe activiteit of sport','Een nieuw restaurant'],
+['Samen spelletjes doen','Een lange wandeling maken','Samen koken en praten','Een spontaan uitstapje'],
+['Een onvergetelijke reis','Een bijzonder klein moment samen','Een grappig avontuur','Een gezamenlijke mijlpaal'],
+['Een spontane autorit','Samen ergens koffie drinken','Een actieve buitenactiviteit','Een verrassingsdate']
+],
+[
+['Onze leukste vakantie','Een onverwacht romantisch moment','Een grappige avond','Een belangrijke mijlpaal'],
+['Hoe ik me op dat moment voelde','Met wie ik die dag samen was','De grappige details','De bijzondere plek'],
+['Een foto van een vakantie','Een spontane foto van ons samen','Een foto van een feest','Een foto van een klein alledaags moment'],
+['Een lief briefje','Een bijzonder fotootje','Een kaartje van een uitje','Een klein persoonlijk voorwerp'],
+['Een eerste bijzondere ontmoeting','Een gezamenlijke reis','Een avond waarop we veel lachten','Een emotioneel moment samen'],
+['Een reis die indruk maakte','Een hilarische gebeurtenis','Een onverwachte verrassing','Een bijzonder gesprek'],
+['Een zorgvuldig geplande verrassing','Een klein gebaar op een moeilijk moment','Een onverwacht bezoek','Een spontaan avontuur'],
+['De mensen met wie ik was','Het gevoel van dat moment','De plek en sfeer','De onverwachte gebeurtenissen']
+],
+[
+['Een ontspannen strandvakantie','Een actieve wandelvakantie','Een culturele stedentrip','Een avontuurlijke rondreis'],
+['Een persoonlijke belevenis','Iets praktisch dat ik vaak gebruik','Een mooi voorwerp','Een zelfgemaakt of persoonlijk cadeau'],
+['Samen thuis een film kijken','Uit eten of naar een café','Met vrienden iets ondernemen','Een sportieve activiteit'],
+['Een sportieve workshop','Een bijzondere rondleiding','Een avontuurlijke excursie','Een culinaire proeverij'],
+['Een dagje wellness','Een luxe etentje','Een nieuwe gadget of aankoop','Een dag helemaal voor mezelf'],
+['De zee en het strand','De bergen en natuur','Een levendige stad','Een rustige plek thuis'],
+['Een dagje weg','Lekker uitslapen','Een hobby of sport beoefenen','Iemand spontaan bezoeken'],
+['Warm en knus','Modern en rustig','Levendig en gezellig','Luxe en stijlvol']
+],
+[
+['Een zachte streling','Een lange omhelzing','Een liefdevolle massage','Een onverwachte kus'],
+['Wanneer je mij complimenten geeft','Wanneer we samen flirten','Wanneer ik me ontspannen voel','Wanneer je zichtbaar naar mij verlangt'],
+['Zacht licht en rustige muziek','Een spontane sfeer zonder planning','Een romantische avond met aandacht','Een speelse sfeer met humor'],
+['Door te flirten','Door een kus of aanraking','Door het rechtstreeks te zeggen','Door een romantisch moment te creëren'],
+['Wat ik prettig vind','Wat ik nog zou willen ontdekken','Hoe we grenzen aangeven','Hoe we meer tijd voor intimiteit maken'],
+['Een geplande romantische avond','Een onverwacht spontaan moment','Een speelse verrassing','Een rustig moment met veel aandacht'],
+['Open kunnen praten','Geen haast of druk voelen','Elkaars grenzen respecteren','Vertrouwen en wederzijdse aandacht'],
+['Eerst rustig bespreken','Samen voorzichtig uitproberen','Een speelse vraag stellen','Elkaar laten aangeven wat prettig is'],
+['Een avond thuis met kaarslicht','Een hotelovernachting','Een ontspannen avond na een massage','Een spontaan moment tijdens een weekend weg'],
+['Het meteen duidelijk zeggen','Het rustig uitleggen','Een alternatief voorstellen','Even pauzeren en later praten'],
+['Dat je initiatief neemt','Dat je me verrast','Dat je aandachtig afstemt','Dat je zelfverzekerd maar lief bent'],
+['Lang knuffelen','Een spontane kus','Een massage','Samen rustig tegen elkaar aan liggen']
+]
+];
+// Contextgebonden antwoorden voor alle extra vragen: per categorie en onderwerp.
+const subjectChoices=[
+['Samen rustig genieten','Een onverwachte verrassing organiseren','Een intiem gesprek voeren','Een spontaan uitje maken'],
+['Een onverwachte blunder','Een droge, scherpe opmerking','Een absurd toeval','Een speelse grap tussen ons'],
+['Ik zou het rustig en praktisch aanpakken','Ik zou er iets actiefs van maken','Ik zou er samen over praten','Ik zou spontaan een ander plan bedenken'],
+['Ik zou er meer tijd voor vrijmaken','Ik zou het samen met jou anders aanpakken','Ik zou iets nieuws uitproberen','Ik zou het juist eenvoudiger maken'],
+['Mijn behoefte aan rust en overzicht','Mijn spontane en avontuurlijke kant','Mijn gevoel voor humor','Mijn zorgzame en betrokken kant'],
+['Er samen een gezellig moment van maken','Er een verrassend uitstapje van maken','Er rustig samen over praten','Er iets nieuws en actiefs bij proberen'],
+['De mensen en het gevoel van die dag','Een onverwacht grappig detail','De plek en de sfeer','Een bijzonder moment tussen ons'],
+['De rustige en comfortabele optie','De spontane en avontuurlijke optie','De gezellige optie samen','De actieve en uitdagende optie']
+];
+const extra=extraFrames.flatMap(([cat,template],i)=>extraSubjects.map((subject,j)=>({id:`v3-${i}-${j}`,category:cat,q:template.replace('{x}',subject),options:subjectChoices[i].map((o,k)=>{
+ // Verwerk het onderwerp concreet in de antwoorden, niet als los generiek antwoord.
+ const variants=[o,o,o,o];
+ return variants[k];
+})})));
+const bank=[...topics.flatMap((t,i)=>t[1].map((q,j)=>({id:`v1-${i}-${j}`,category:t[0],q,options:specificBase[i][j]}))),...extra];
 
 const API='https://relatiespel-api.vdheuvel-marcel.workers.dev';
 const KEY='relatiespel_v2',TOKEN_KEY='relatiespel_v3_token',ACTIVE_KEY='relatiespel_v3_active_game';
 let db;try{db=JSON.parse(localStorage.getItem(KEY))||{games:[],seen:{}}}catch{db={games:[],seen:{}}}
 db.games=Array.isArray(db.games)?db.games:[];db.seen=db.seen&&typeof db.seen==='object'?db.seen:{};
+let selectedCategories=new Set(topics.map(t=>t[0]));
 let token=sessionStorage.getItem(TOKEN_KEY)||localStorage.getItem(TOKEN_KEY)||'',game=null,stage='setup',leaveFromStage='answer',answer=null,guess=null,busy=false,cloudMessage='';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pair=names=>names.map(n=>n.trim().toLocaleLowerCase('nl').replace(/\s+/g,' ')).sort().join('||');
@@ -66,8 +192,20 @@ function render(){const a=$('#app');if(!a)return;document.body.classList.toggle(
 if(!token){a.innerHTML=`<section class="card"><h2>🔒 Persoonlijke toegangscode</h2><p>Voer je toegangscode in om je spellen in de cloud te bewaren.</p><label for="code">Toegangscode</label><input id="code" type="password" autocomplete="current-password"><button class="primary" id="login">Inloggen</button><p class="muted">De code wordt niet in deze website opgeslagen.</p>${status()}</section>`;$('#login').onclick=login;$('#code').onkeydown=e=>{if(e.key==='Enter')login()};return}
 if(stage==='setup'){
 const unfinished=db.games.filter(g=>!g.finished&&g.records.length<g.ids.length);
-a.innerHTML=`<section class="card"><h2>Nieuw spel</h2><label>Speler 1</label><input id="n1" value="Speler 1"><label>Speler 2</label><input id="n2" value="Speler 2"><label>Aantal vragen</label><input id="count" type="number" min="1" max="${bank.length}" value="15"><label><input id="adult" type="checkbox" checked> Sensuele verlangens (18+) meenemen</label><p class="muted">${bank.length} vragen. Voor hetzelfde koppel worden eerst ongebruikte vragen gekozen.</p><button class="primary" id="start">♥ Start spel</button></section><section class="card"><h3>Verder spelen (${unfinished.length})</h3>${unfinished.length?unfinished.slice().reverse().map(g=>`<button class="option" data-resume="${esc(g.id)}">${esc(g.names.join(' & '))} — ${g.records.length}/${g.ids.length} vragen</button>`).join(''):'<p class="muted">Geen onderbroken spellen.</p>'}</section><section class="card"><h3>Partijhistorie (${db.games.length})</h3><div class="toolbar"><button class="secondary" id="history">Historie</button><button class="secondary" id="export">JSON-back-up</button><button class="secondary" id="refresh">Synchroniseer</button></div><label>JSON-back-up importeren</label><input type="file" id="import" accept=".json,application/json"><button class="secondary" id="logout">Uitloggen</button>${status()}</section>`;
-for(const id of ['n1','n2','count']){$('#'+id).onfocus=e=>e.target.select();$('#'+id).onclick=e=>e.target.select()};$('#start').onclick=start;$('#history').onclick=()=>{stage='history';render()};$('#export').onclick=backup;$('#import').onchange=restore;$('#refresh').onclick=syncCloud;$('#logout').onclick=()=>{token='';localStorage.removeItem(TOKEN_KEY);sessionStorage.removeItem(TOKEN_KEY);render()};a.querySelectorAll('[data-resume]').forEach(b=>b.onclick=()=>resume(b.dataset.resume));return}
+a.innerHTML=`<section class="card"><h2>Nieuw spel</h2><label>Speler 1</label><input id="n1" value="Speler 1"><label>Speler 2</label><input id="n2" value="Speler 2"><label>Aantal vragen</label><input id="count" type="number" min="1" max="${bank.length}" value="15"><label><input id="adult" type="checkbox" checked> Sensuele verlangens (18+) meenemen</label><details id="catPicker"><summary><b>Categorieën kiezen</b> <small id="catCount">(9 van 9)</small></summary><div class="cat-grid">${topics.map(t=>`<label><input type="checkbox" class="category" value="${esc(t[0])}" ${selectedCategories.has(t[0])?'checked':''}>${esc(t[0])}</label>`).join('')}</div><div class="toolbar"><button class="secondary" type="button" id="catAll">Alles kiezen</button><button class="secondary" type="button" id="catNone">Alles uit</button></div></details><p class="muted" id="available">${bank.length} vragen beschikbaar. Voor hetzelfde koppel worden eerst ongebruikte vragen gekozen.</p><button class="primary" id="start">♥ Start spel</button></section><section class="card"><h3>Verder spelen (${unfinished.length})</h3>${unfinished.length?unfinished.slice().reverse().map(g=>`<button class="option" data-resume="${esc(g.id)}">${esc(g.names.join(' & '))} — ${g.records.length}/${g.ids.length} vragen</button>`).join(''):'<p class="muted">Geen onderbroken spellen.</p>'}</section><section class="card"><h3>Partijhistorie (${db.games.length})</h3><div class="toolbar"><button class="secondary" id="history">Historie</button><button class="secondary" id="stats">Onze statistieken</button><button class="secondary" id="export">JSON-back-up</button><button class="secondary" id="refresh">Synchroniseer</button></div><label>JSON-back-up importeren</label><input type="file" id="import" accept=".json,application/json"><button class="secondary" id="logout">Uitloggen</button>${status()}</section>`;
+for(const id of ['n1','n2','count']){$('#'+id).onfocus=e=>e.target.select();$('#'+id).onclick=e=>e.target.select()};$('#start').onclick=start;$('#stats').onclick=()=>{stage='stats';render()};$('#adult').onchange=updateAvailable;$('#catAll').onclick=()=>{selectedCategories=new Set(topics.map(t=>t[0]));syncCategoryControls()};$('#catNone').onclick=()=>{selectedCategories=new Set();syncCategoryControls()};a.querySelectorAll('.category').forEach(b=>b.onchange=()=>{selectedCategories=new Set([...a.querySelectorAll('.category:checked')].map(x=>x.value));updateAvailable()});updateAvailable();$('#history').onclick=()=>{stage='history';render()};$('#export').onclick=backup;$('#import').onchange=restore;$('#refresh').onclick=syncCloud;$('#logout').onclick=()=>{token='';localStorage.removeItem(TOKEN_KEY);sessionStorage.removeItem(TOKEN_KEY);render()};a.querySelectorAll('[data-resume]').forEach(b=>b.onclick=()=>resume(b.dataset.resume));return}
+if(stage==='stats'){
+const completed=db.games.filter(g=>g.finished&&Array.isArray(g.records)&&g.records.length);
+const keys=[...new Set(completed.map(g=>g.key||pair(g.names)))];
+const chosen=localStorage.getItem('relatiespel_stats_pair')||keys[0]||'';
+const current=keys.includes(chosen)?chosen:(keys[0]||'');
+const games=completed.filter(g=>(g.key||pair(g.names))===current);
+const total=games.reduce((n,g)=>n+g.records.length,0);
+const correct=games.reduce((n,g)=>n+g.records.filter(r=>r.correct).length,0);
+const people=games.length?games[0].names:[];
+const peopleStats=people.map(n=>{let all=0,good=0,streak=0,best=0;for(const g of games.slice().sort((x,y)=>String(x.started).localeCompare(String(y.started))))for(const r of g.records){if(r.guesser!==n)continue;all++;if(r.correct){good++;streak++;best=Math.max(best,streak)}else streak=0}return {n,all,good,pct:all?Math.round(good/all*100):0,best}});
+a.innerHTML=`<section class="card"><h2>💕 Onze statistieken</h2><button class="secondary" id="statsBack">← Terug</button>${keys.length?`<label for="statsPair">Koppel</label><select id="statsPair">${keys.map(k=>{const g=completed.find(x=>(x.key||pair(x.names))===k);return `<option value="${esc(k)}" ${k===current?'selected':''}>${esc(g.names.join(' & '))}</option>`}).join('')}</select><div class="stat-grid"><div class="stat-box"><b>${games.length}</b><small>Afgeronde partijen</small></div><div class="stat-box"><b>${total}</b><small>Vragen beantwoord</small></div><div class="stat-box"><b>${total?Math.round(correct/total*100):0}%</b><small>Goed geraden</small></div><div class="stat-box"><b>${Math.max(0,...peopleStats.map(x=>x.best))}</b><small>Beste reeks goed</small></div></div><h3>Wie kent de ander het beste?</h3>${peopleStats.map(x=>`<div class="stat-row"><div style="display:flex;justify-content:space-between"><span>${esc(x.n)} <small>(${x.good}/${x.all})</small></span><b>${x.pct}%</b></div><div class="stat-track"><div class="stat-fill" style="width:${x.pct}%"></div></div></div>`).join('')}<p class="muted">Alleen afgeronde partijen tellen mee. Percentages zijn gebaseerd op de antwoorden die iedere speler heeft geraden.</p>`:'<p>Er zijn nog geen afgeronde partijen om statistieken van te tonen.</p>'}</section>${status()}`;
+$('#statsBack').onclick=()=>{stage='setup';render()};const sel=$('#statsPair');if(sel)sel.onchange=()=>{localStorage.setItem('relatiespel_stats_pair',sel.value);render()};return}
 if(stage==='history'){
 a.innerHTML=`<section class="card"><h2>Partijhistorie</h2><button class="secondary" id="back">← Terug</button>${db.games.length?db.games.slice().reverse().map(g=>`<details><summary><b>${esc(g.names.join(' & '))}</b> — ${fmt(g.started)}<br><small>${g.scores.join(' – ')} hartjes · ${g.records.length}/${g.ids.length} vragen · ${g.finished?'afgerond':'onderbroken'}</small></summary><div class="toolbar"><button class="secondary" data-pdf="${esc(g.id)}">📄 PDF</button>${!g.finished?`<button class="secondary" data-resume="${esc(g.id)}">▶ Hervat</button>`:''}<button class="secondary danger" data-delete="${esc(g.id)}">Verwijder</button></div>${g.records.map((r,i)=>`<div style="border-top:1px solid #eee;padding:10px 0"><b>${i+1}. ${esc(r.q)}</b><p class="muted">${esc(r.category)} · ${esc(r.answerer)}: ${esc(r.answer)} · ${esc(r.guesser)}: ${esc(r.guess)} · ${r.correct?'♥ goed':'niet goed'}</p></div>`).join('')}</details>`).join(''):'<p>Er zijn nog geen gespeelde partijen.</p>'}</section>${status()}`;
 $('#back').onclick=()=>{stage='setup';render()};a.querySelectorAll('[data-pdf]').forEach(b=>b.onclick=()=>printGame(db.games.find(g=>g.id===b.dataset.pdf)));a.querySelectorAll('[data-resume]').forEach(b=>b.onclick=()=>resume(b.dataset.resume));a.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>removeGame(b.dataset.delete));return}
@@ -79,7 +217,7 @@ $('#discard').onclick=async()=>{const id=game.id;if(!confirm('Weet je zeker dat 
 $('#cancelLeave').onclick=()=>{stage=leaveFromStage;render()};return}
 if(stage==='end'){a.innerHTML=`<section class="card" style="text-align:center"><h2>🏆 Partij afgelopen!</h2><p>${game.scores[0]===game.scores[1]?'Gelijkspel!':'Winnaar: '+esc(game.names[game.scores[0]>game.scores[1]?0:1])}</p><div class="scores">${game.names.map((n,j)=>`<div>${esc(n)}<strong>♥ ${game.scores[j]}</strong></div>`).join('')}</div><button class="primary" id="home">Naar start</button><button class="secondary" id="review">Bekijk historie</button></section>${status()}`;$('#home').onclick=()=>{localStorage.removeItem(ACTIVE_KEY);game=null;stage='setup';render()};$('#review').onclick=()=>{stage='history';render()};return}
 const i=game.records.length,qi=stage==='result'?i-1:i,p=qi%2,other=1-p,q=bank.find(x=>x.id===game.ids[qi]);if(!q){stage='end';render();return}
-const header=`<div style="text-align:right;margin:8px 0"><button class="secondary" id="leaveGame">↩ Spel verlaten</button></div><section class="card"><div class="scores">${game.names.map((n,j)=>`<div>${esc(n)}<strong>♥ ${game.scores[j]}</strong></div>`).join('')}</div><p class="muted" style="text-align:center">Vraag ${qi+1} van ${game.ids.length} · ${esc(q.category)}</p></section>`;
+const header=`<div style="text-align:right;margin:8px 0"><button class="secondary" id="leaveGame">↩ Spel verlaten</button></div><section class="card"><div class="scores">${game.names.map((n,j)=>`<div>${esc(n)}<strong>♥ ${game.scores[j]}</strong></div>`).join('')}</div><p class="muted" style="text-align:center">Vraag ${qi+1} van ${game.ids.length} · ${esc(q.category)}</p><div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round((qi+1)/game.ids.length*100)}"><div class="progress-fill" style="width:${Math.round((qi+1)/game.ids.length*100)}%"></div></div></section>`;
 if(stage==='handoff'){a.innerHTML=header+`<section class="card" style="text-align:center"><h2>🔒 Geef de telefoon door</h2><p>Het geheime antwoord van ${esc(game.names[p])} is bewaard.</p><p>${esc(game.names[other])} mag nu raden.</p><button class="primary" id="go">Verder</button></section>`;$('#go').onclick=()=>{stage='guess';render()};bindLeave();return}
 if(stage==='result'){const r=game.records[i-1];a.innerHTML=header+`<section class="card" style="text-align:center"><h2>${r.correct?'💖 Goed geraden!':'💌 Niet geraden'}</h2><b>${esc(r.q)}</b><p>${esc(r.answerer)}: <b>${esc(r.answer)}</b></p><p>${esc(r.guesser)} voorspelde: <b>${esc(r.guess)}</b></p><button class="primary" id="next">${i===game.ids.length?'Bekijk eindstand':'Volgende vraag'}</button></section>`;$('#next').onclick=()=>{answer=null;guess=null;if(i===game.ids.length){game.finished=true;localStorage.removeItem(ACTIVE_KEY);saveLocal();cloudSave(game);stage='end'}else stage='answer';render()};bindLeave();return}
 const isAnswer=stage==='answer';a.innerHTML=header+`<section class="card"><div class="pill">${isAnswer?esc(game.names[p])+' antwoordt in het geheim':esc(game.names[other])+' voorspelt'}</div><h2>${esc(q.q)}</h2>${q.options.map((o,j)=>`<button class="option ${(isAnswer?answer:guess)===j?'selected':''}" data-index="${j}">${'ABCD'[j]}. ${esc(o)}</button>`).join('')}<button class="primary" id="submit" ${(isAnswer?answer:guess)===null?'disabled':''}>${isAnswer?'Bewaar geheim antwoord':'Onthul antwoorden'}</button></section>`;
@@ -88,7 +226,9 @@ function bindLeave(){const b=$('#leaveGame');if(b)b.onclick=()=>{leaveFromStage=
 async function login(){if(busy)return;const code=$('#code').value;busy=true;$('#login').disabled=true;try{const result=await api('/auth/login','POST',{code});token=result.token;localStorage.setItem(TOKEN_KEY,token);cloudMessage='Ingelogd';stage='setup';render();await syncCloud()}catch(e){cloudMessage=e.message;render()}finally{busy=false}}
 function resume(id){game=db.games.find(g=>g.id===id);if(!game)return;localStorage.setItem(ACTIVE_KEY,game.id);answer=null;guess=null;stage=game.records.length>=game.ids.length?'end':'answer';render()}
 function resumeOnOpen(){const id=localStorage.getItem(ACTIVE_KEY);const g=id&&db.games.find(x=>x.id===id&&!x.finished&&x.records.length<x.ids.length);if(g){resume(g.id);return true}return false}
-function start(){const names=[$('#n1').value.trim()||'Speler 1',$('#n2').value.trim()||'Speler 2'];if(names[0].toLowerCase()===names[1].toLowerCase()){alert('Vul twee verschillende namen in.');return}const count=Number($('#count').value),adult=$('#adult').checked,eligible=bank.filter(q=>adult||q.category!=='Sensuele verlangens (18+)');if(!Number.isInteger(count)||count<1||count>eligible.length){alert('Kies 1 t/m '+eligible.length+' vragen.');return}const key=pair(names),seen=new Set(db.seen[key]||[]),fresh=shuffle(eligible.filter(q=>!seen.has(q.id)).map(q=>q.id)),old=shuffle(eligible.filter(q=>seen.has(q.id)).map(q=>q.id));if(fresh.length<count&&!confirm('Er zijn nog '+fresh.length+' ongebruikte vragen. Ook eerdere vragen gebruiken?'))return;game={id:uniqueId(),names,key,ids:[...fresh,...old].slice(0,count),scores:[0,0],records:[],started:new Date().toISOString(),finished:false};db.games.push(game);localStorage.setItem(ACTIVE_KEY,game.id);saveLocal();cloudSave(game);answer=null;guess=null;stage='answer';render()}
+function syncCategoryControls(){document.querySelectorAll('.category').forEach(b=>b.checked=selectedCategories.has(b.value));updateAvailable()}
+function updateAvailable(){const adult=$('#adult')?.checked??true;const n=bank.filter(q=>selectedCategories.has(q.category)&&(adult||q.category!=='Sensuele verlangens (18+)')).length;const count=$('#count');if(count)count.max=n;const label=$('#available');if(label)label.textContent=n+' vragen beschikbaar in je selectie. Voor hetzelfde koppel worden eerst ongebruikte vragen gekozen.';const counter=$('#catCount');if(counter)counter.textContent='('+selectedCategories.size+' van '+topics.length+')'}
+function start(){const names=[$('#n1').value.trim()||'Speler 1',$('#n2').value.trim()||'Speler 2'];if(names[0].toLowerCase()===names[1].toLowerCase()){alert('Vul twee verschillende namen in.');return}const count=Number($('#count').value),adult=$('#adult').checked,eligible=bank.filter(q=>selectedCategories.has(q.category)&&(adult||q.category!=='Sensuele verlangens (18+)'));if(!eligible.length){alert('Kies minimaal één categorie met beschikbare vragen.');return}if(!Number.isInteger(count)||count<1||count>eligible.length){alert('Kies 1 t/m '+eligible.length+' vragen.');return}const key=pair(names),seen=new Set(db.seen[key]||[]),fresh=shuffle(eligible.filter(q=>!seen.has(q.id)).map(q=>q.id)),old=shuffle(eligible.filter(q=>seen.has(q.id)).map(q=>q.id));if(fresh.length<count&&!confirm('Er zijn nog '+fresh.length+' ongebruikte vragen. Ook eerdere vragen gebruiken?'))return;game={id:uniqueId(),names,key,ids:[...fresh,...old].slice(0,count),scores:[0,0],records:[],started:new Date().toISOString(),finished:false};db.games.push(game);localStorage.setItem(ACTIVE_KEY,game.id);saveLocal();cloudSave(game);answer=null;guess=null;stage='answer';render()}
 async function removeGame(id,confirmed=false){const g=db.games.find(x=>x.id===id);if(!g||(!confirmed&&!confirm('Partij van '+g.names.join(' & ')+' definitief verwijderen?')))return;try{await api('/games/'+encodeURIComponent(id),'DELETE');db.games=db.games.filter(x=>x.id!==id);if(localStorage.getItem(ACTIVE_KEY)===id)localStorage.removeItem(ACTIVE_KEY);if(game?.id===id){game=null;answer=null;guess=null;stage='setup'}rebuildSeen();saveLocal();cloudMessage='Partij verwijderd';render()}catch(e){alert('Verwijderen mislukt: '+e.message)}}
 function printGame(g){if(!g)return;const w=window.open('','_blank');if(!w){alert('Sta pop-ups toe voor de PDF.');return}const rows=g.records.map((r,i)=>`<section><h3>${i+1}. ${esc(r.q)}</h3><p><b>${esc(r.answerer)}:</b> ${esc(r.answer)}<br><b>${esc(r.guesser)} voorspelde:</b> ${esc(r.guess)}<br>${r.correct?'Goed geraden':'Niet goed'}</p></section>`).join('');w.document.write(`<!doctype html><html lang="nl"><meta charset="utf-8"><title>Relatiespel</title><style>body{font:14px Arial;max-width:760px;margin:30px auto;line-height:1.5}h1{color:#bd235f}section{border-bottom:1px solid #ddd;break-inside:avoid;padding:9px 0}@media print{body{margin:12mm}}</style><h1>💕 Hoe goed ken jij mij?</h1><p>${esc(g.names.join(' & '))} — ${fmt(g.started)}<br>Hartjes: ${g.scores.join(' – ')}<br>${g.finished?'Afgerond':'Onderbroken'}</p>${rows}<script>window.onload=()=>setTimeout(()=>window.print(),300)<\/script></html>`);w.document.close()}
 function backup(){const blob=new Blob([JSON.stringify({version:3,exported:new Date().toISOString(),data:db},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='relatiespel-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
